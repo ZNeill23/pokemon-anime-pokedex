@@ -8,6 +8,7 @@ import PokemonModal from "./components/PokemonModal";
 import SearchBar from "./components/SearchBar";
 import { typeColors } from "./data/typeColors";
 import StatsModal from "./components/StatsModal";
+import AppearancesModal from "./components/AppearancesModal";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -25,6 +26,9 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedSeasons, setSelectedSeasons] = useState<number[]>([]);
+  const [appearancesModal, setAppearancesModal] = useState<Pokemon | null>(
+    null
+  );
 
   useEffect(() => {
     localStorage.setItem("pokemonList", JSON.stringify(pokemonList));
@@ -168,7 +172,8 @@ function App() {
             pokemon={p}
             onClick={() => setSelectedPokemon(p)}
             onDelete={handleDelete}
-            onUpdate={handleUpdate} // ✅ important for appearance modal
+            onUpdate={handleUpdate}
+            onViewAppearances={(poke) => setAppearancesModal(poke)}
           />
         ))}
       </div>
@@ -188,6 +193,13 @@ function App() {
         <StatsModal
           pokemonList={pokemonList}
           onClose={() => setShowStats(false)}
+        />
+      )}
+
+      {appearancesModal && (
+        <AppearancesModal
+          pokemon={appearancesModal}
+          onClose={() => setAppearancesModal(null)}
         />
       )}
     </>

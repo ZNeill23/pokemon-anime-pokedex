@@ -31,7 +31,7 @@ header {
 /* Grid for cards */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.25rem;
   padding: 1rem;
 }
@@ -47,7 +47,17 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 450px;
+  height: 100%; /* ✅ stretch evenly */
+  min-height: 460px; /* consistent baseline */
+  width: auto;
+}
+
+.pokemon-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .card img {
@@ -87,6 +97,7 @@ header {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 0.7rem;
 }
 
 .card-buttons button:first-child {
@@ -329,4 +340,32 @@ header {
 
 .add-btn:hover {
   background-color: #f5f5f5;
+}
+
+.appearances-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  max-height: 300px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.appearances-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.view-appearances-btn {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.view-appearances-btn:hover {
+  background: #1976d2;
 }
