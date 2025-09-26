@@ -53,10 +53,15 @@ npm start
 ## 📂 Project Structure
 
 src/
+
 ├─ components/ # React components (Form, Cards, Modal, Filters)
+
 ├─ data/ # Episodes list, Pokemon types, sample data
+
 ├─ services/ # API helpers (PokéAPI calls)
+
 ├─ index.css # Global styling
+
 └─ App.tsx # Main entry
 
 ## 🛠️ Tech Stack
