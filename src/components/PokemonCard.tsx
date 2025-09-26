@@ -28,10 +28,14 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
     onUpdate(updated);
   };
 
+  const dexNumber = `#${pokemon.id.toString().padStart(3, "0")}`;
+
   return (
     <div className="card" onClick={onClick}>
       <img src={pokemon.image} alt={pokemon.name} />
-      <h3>{pokemon.name}</h3>
+      <h3>
+        {dexNumber} {pokemon.name}
+      </h3>
 
       {/* Types */}
       <div className="types">
@@ -39,12 +43,6 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           <TypeBadge key={t} type={t} />
         ))}
       </div>
-
-      {pokemon.firstAppearance && (
-        <p>
-          <strong>First Appearance:</strong> {pokemon.firstAppearance}
-        </p>
-      )}
 
       {firstEpisode && (
         <p>

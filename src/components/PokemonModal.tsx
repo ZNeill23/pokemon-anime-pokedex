@@ -64,6 +64,8 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
       value: s.base_stat,
     })) || [];
 
+  const dexNumber = `#${pokemon.id.toString().padStart(3, "0")}`;
+
   return (
     <div className="modal" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -72,7 +74,9 @@ const PokemonModal: React.FC<PokemonModalProps> = ({
         </button>
 
         <img src={pokemon.image} alt={pokemon.name} />
-        <h2>{capitalize(pokemon.name)}</h2>
+        <h2>
+          {dexNumber} {capitalize(pokemon.name)}
+        </h2>
 
         {/* Types */}
         <div className="types">
