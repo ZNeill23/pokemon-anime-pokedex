@@ -1,69 +1,75 @@
-# React + TypeScript + Vite
+# Pokémon Episode Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A companion web app for tracking Pokémon appearances throughout the **Pokémon anime**.  
+Easily log Pokémon, mark their first appearance, and see how many total episodes they’ve appeared in.  
+Built with **React + TypeScript** and styled with custom CSS.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 📖 **Pokédex Integration**  
+  Auto-completes Pokémon by name or Pokédex number using the [PokéAPI](https://pokeapi.co).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🎬 **Episode Tracking**  
+  Record a Pokémon’s **first appearance** and track how many times it shows up.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 🖼️ **Pokémon Cards & Modals**  
+  Clean card view with images, types, first appearance, and total episode count.  
+  Detailed modal view with stats and evolution chain.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- 🔍 **Filters**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  - Filter Pokémon by **type**
+  - Filter Pokémon by **season**
+  - Clear filters with one click
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 🧹 **Form Controls**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  - Add new Pokémon
+  - Update Pokémon
+  - Clear form with a dedicated button
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 💾 **Local Persistence**  
+  Your Pokémon list is saved in **localStorage** so it’s still there after refreshing.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+git clone https://github.com/ZNeill23/pokemon-episode-tracker.git
+cd pokemon-episode-tracker
+
+### 2. Install Dependencies
+
+npm install
+
+### 3. Start the Development Server
+
+npm start
+
+## 📂 Project Structure
+
+src/
+├─ components/ # React components (Form, Cards, Modal, Filters)
+├─ data/ # Episodes list, Pokemon types, sample data
+├─ services/ # API helpers (PokéAPI calls)
+├─ index.css # Global styling
+└─ App.tsx # Main entry
+
+## 🛠️ Tech Stack
+
+React (with Hooks)
+
+TypeScript
+
+PokéAPI (for Pokémon data)
+
+CSS (custom styling)
+
+## 📜 License
+
+This project is for educational and fan purposes.
+Pokémon content and assets are © Nintendo / Game Freak / Creatures / The Pokémon Company.
