@@ -38,7 +38,6 @@ const PokemonForm: React.FC<PokemonFormProps> = ({
   const [types, setTypes] = useState("");
   const [image, setImage] = useState("");
   const [firstAppearance, setFirstAppearance] = useState("");
-  const [totalEpisodes, setTotalEpisodes] = useState(1);
 
   const [allNames, setAllNames] = useState<string[]>([]);
 
@@ -49,8 +48,7 @@ const PokemonForm: React.FC<PokemonFormProps> = ({
       setName(editing.name);
       setTypes(editing.types.join(", "));
       setImage(editing.image);
-      setFirstAppearance(editing.firstAppearance || "");
-      setTotalEpisodes(editing.totalEpisodes);
+      setFirstAppearance(editing.appearances?.[0] || "");
     } else {
       handleClear();
     }
@@ -132,7 +130,6 @@ const PokemonForm: React.FC<PokemonFormProps> = ({
     setTypes("");
     setImage("");
     setFirstAppearance("");
-    setTotalEpisodes(1);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -143,8 +140,9 @@ const PokemonForm: React.FC<PokemonFormProps> = ({
       name: capitalize(name),
       types: types.split(",").map((t) => t.trim()),
       image,
-      firstAppearance,
-      totalEpisodes,
+      totalEpisodes: 1, // first appearance counts as one
+      appearances: firstAppearance ? [firstAppearance] : [],
+      lastEpisodeSeen: firstAppearance || undefined,
     };
 
     if (editing) {

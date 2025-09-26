@@ -93,7 +93,7 @@ function App() {
     )
     .filter((p) => {
       if (selectedSeasons.length === 0) return true;
-      const season = getSeasonFromEpisode(p.firstAppearance);
+      const season = getSeasonFromEpisode(p.appearances?.[0]);
       return season !== null && selectedSeasons.includes(season);
     })
     .sort((a, b) => a.id - b.id);
@@ -168,7 +168,7 @@ function App() {
             pokemon={p}
             onClick={() => setSelectedPokemon(p)}
             onDelete={handleDelete}
-            onUpdate={handleUpdate}
+            onUpdate={handleUpdate} // ✅ important for appearance modal
           />
         ))}
       </div>

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Pokemon } from "../data/pokemon";
 import { episodes } from "../data/episodes";
 import TypeBadge from "./TypeBadge";
+import AddAppearanceModal from "./AddAppearanceModal";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -16,17 +17,13 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   onUpdate,
   onClick,
 }) => {
-  const firstEpisode = pokemon.firstAppearance
-    ? episodes.find((e) => e.title === pokemon.firstAppearance)
-    : null;
+  const [showAddAppearance, setShowAddAppearance] = useState(false);
 
-  const handleIncreaseEpisodes = () => {
-    const updated: Pokemon = {
-      ...pokemon,
-      totalEpisodes: pokemon.totalEpisodes + 1,
-    };
-    onUpdate(updated);
-  };
+  // ✅ Get first appearance from appearances array (first recorded episode)
+  const firstEpisode =
+    pokemon.appearances && pokemon.appearances.length > 0
+      ? episodes.find((e) => e.title === pokemon.appearances![0])
+      : null;
 
   const dexNumber = `#${pokemon.id.toString().padStart(3, "0")}`;
 
@@ -46,8 +43,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
 
       {firstEpisode && (
         <p>
-          <strong>First Appearance:</strong> Season {firstEpisode.season}{" "}
-          Episode {firstEpisode.id}: {firstEpisode.title}
+          <strong>First Appearance:</strong> Season {firstEpisode.season} Ep{" "}
+          {firstEpisode.id}: {firstEpisode.title}
         </p>
       )}
 
@@ -55,13 +52,35 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
         <strong>Total Episodes:</strong> {pokemon.totalEpisodes}
       </p>
 
+      <p>
+        <strong>Last Episode Seen:</strong>{" "}
+        {pokemon.lastEpisodeSeen || "Not recorded"}
+      </p>
+
       <div
         className="card-buttons"
-        onClick={(e) => e.stopPropagation()} // stop modal open
+        onClick={(e) => e.stopPropagation()} // prevent opening modal
       >
-        <button onClick={handleIncreaseEpisodes}>+ Appearance</button>
+        <button onClick={() => setShowAddAppearance(true)}>+ Appearance</button>
         <button onClick={() => onDelete(pokemon.id)}>Delete</button>
       </div>
+
+      {showAddAppearance && (
+        <AddAppearanceModal
+          onClose={() => setShowAddAppearance(false)}
+          onConfirm={(episodeTitle) => {
+            const updated: Pokemon = {
+              ...pokemon,
+              totalEpisodes: pokemon.totalEpisodes + 1,
+              lastEpisodeSeen: episodeTitle,
+              appearances: pokemon.appearances
+                ? [...pokemon.appearances, episodeTitle]
+                : [episodeTitle], // ✅ ensures first appearance is preserved
+            };
+            onUpdate(updated);
+          }}
+        />
+      )}
     </div>
   );
 };
