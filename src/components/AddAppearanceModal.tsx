@@ -1,11 +1,14 @@
+// Displays a modal to add a Pokémon appearance in a specific episode
 import React, { useState } from "react";
 import { episodes } from "../data/episodes";
 
+// Define the props for the AddAppearanceModal component
 interface AddAppearanceModalProps {
   onClose: () => void;
   onConfirm: (episodeTitle: string) => void;
 }
 
+// Displays a modal to add a Pokémon appearance in a specific episode
 const AddAppearanceModal: React.FC<AddAppearanceModalProps> = ({
   onClose,
   onConfirm,

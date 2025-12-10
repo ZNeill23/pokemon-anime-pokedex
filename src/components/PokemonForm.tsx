@@ -1,17 +1,21 @@
+// This component provides a form to add or edit Pokémon entries, with auto-fill features from the PokéAPI.
 import React, { useEffect, useState } from "react";
 import type { Pokemon } from "../data/pokemon";
 import { episodes } from "../data/episodes";
 
+// Define the props for the PokemonForm component
 interface PokemonFormProps {
   onAdd: (pokemon: Pokemon) => void;
   onUpdate: (pokemon: Pokemon) => void;
   editing: Pokemon | null;
 }
 
+// Provides a form to add or edit Pokémon entries, with auto-fill features from the PokéAPI
 interface PokeApiType {
   type: { name: string };
 }
 
+// Defines the structure of the API response for Pokémon details
 interface PokeApiResponse {
   id: number;
   name: string;
@@ -26,8 +30,10 @@ interface PokeApiResponse {
   };
 }
 
+// Capitalizes the first letter of a string
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
+// Provides a form to add or edit Pokémon entries, with auto-fill features from the PokéAPI
 const PokemonForm: React.FC<PokemonFormProps> = ({
   onAdd,
   onUpdate,
@@ -123,7 +129,7 @@ const PokemonForm: React.FC<PokemonFormProps> = ({
     fetchByName();
   }, [name, id]);
 
-  // ✅ Manual clear function
+  // Manual clear function
   const handleClear = () => {
     setId("");
     setName("");

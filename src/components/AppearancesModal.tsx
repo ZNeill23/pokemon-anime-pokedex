@@ -1,12 +1,18 @@
+// Displays a modal showing all appearances of a specific Pokémon
 import React from "react";
 import type { Pokemon } from "../data/pokemon";
 
+// Define the props for the AppearancesModal component
 interface AppearancesModalProps {
   pokemon: Pokemon;
   onClose: () => void;
 }
 
-const AppearancesModal: React.FC<AppearancesModalProps> = ({ pokemon, onClose }) => {
+// Displays a modal showing all appearances of a specific Pokémon
+const AppearancesModal: React.FC<AppearancesModalProps> = ({
+  pokemon,
+  onClose,
+}) => {
   return (
     <div className="modal" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>

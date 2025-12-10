@@ -1,5 +1,4 @@
-// src/services/pokeapi.ts
-
+// Service to fetch Pokémon evolution chain data from PokeAPI
 interface EvolutionDetail {
   species: {
     name: string;
@@ -8,6 +7,7 @@ interface EvolutionDetail {
   evolves_to: EvolutionDetail[];
 }
 
+// Defines the structure for evolution chain links
 export interface EvolutionLink {
   name: string;
   image: string;

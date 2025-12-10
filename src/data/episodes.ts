@@ -1,12 +1,10 @@
-// src/data/episodes.ts
-
+// This file contains a dataset of Pokémon anime episodes with their respective season and episode numbers.
 export interface Episode {
   id: number; // Episode number within the season
   season: number; // Season number
   title: string; // Episode title
 }
 
-// Example dataset (expand this with real episodes as needed)
 export const episodes: Episode[] = [
   { id: 1, season: 1, title: "Pokémon - I Choose You!" },
   { id: 2, season: 1, title: "Pokémon Emergency!" },

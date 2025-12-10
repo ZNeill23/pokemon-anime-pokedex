@@ -1,10 +1,13 @@
+// This component displays a modal with detailed information about a selected Pokémon, including its stats and evolution chain.
 import React, { useEffect, useState } from "react";
 import type { Pokemon } from "../data/pokemon";
 import { fetchEvolutionChain } from "../services/pokeapi";
 import TypeBadge from "./TypeBadge";
 
+// Capitalizes the first letter of a string
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
+// Define the props for the PokemonModal component
 interface PokemonModalProps {
   pokemon: Pokemon;
   onClose: () => void;
@@ -12,6 +15,7 @@ interface PokemonModalProps {
   onSelectPokemon: (id: number) => void;
 }
 
+// Displays a modal with detailed information about a selected Pokémon, including its stats and evolution chain
 interface PokemonStat {
   base_stat: number;
   stat: {
@@ -19,15 +23,18 @@ interface PokemonStat {
   };
 }
 
+// Defines the structure of the API response for Pokémon details
 interface PokemonApiResponse {
   stats: PokemonStat[];
 }
 
+// Defines the structure for evolution chain links
 interface EvolutionLink {
   name: string;
   image: string;
 }
 
+// Displays a modal with detailed information about a selected Pokémon, including its stats and evolution chain
 const PokemonModal: React.FC<PokemonModalProps> = ({
   pokemon,
   onClose,

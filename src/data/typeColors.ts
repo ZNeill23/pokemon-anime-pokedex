@@ -1,5 +1,4 @@
-// src/data/typeColors.ts
-
+// This file defines a mapping between Pokémon types and their corresponding color codes.
 export const typeColors: Record<string, string> = {
   normal: "#A8A77A",
   fire: "#EE8130",

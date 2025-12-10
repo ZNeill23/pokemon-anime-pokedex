@@ -1,11 +1,14 @@
+// This component displays a modal with statistics about the Pokémon in the list.
 import React from "react";
 import type { Pokemon } from "../data/pokemon";
 
+// Define the props for the StatsModal component
 interface StatsModalProps {
   pokemonList: Pokemon[];
   onClose: () => void;
 }
 
+// Displays a modal with statistics about the Pokémon in the list
 const StatsModal: React.FC<StatsModalProps> = ({ pokemonList, onClose }) => {
   const totalPokemon = pokemonList.length;
   const totalAppearances = pokemonList.reduce(
@@ -21,10 +24,10 @@ const StatsModal: React.FC<StatsModalProps> = ({ pokemonList, onClose }) => {
     });
   });
 
-  // Count by season (from firstAppearance text)
+  // Count by season (from fappearances text)
   const seasonCounts: Record<number, number> = {};
   pokemonList.forEach((p) => {
-    const match = p.firstAppearance?.match(/Season\s+(\d+)/i);
+    const match = p.appearances?.[0]?.match(/Season\s+(\d+)/i);
     if (match) {
       const season = parseInt(match[1], 10);
       seasonCounts[season] = (seasonCounts[season] || 0) + 1;

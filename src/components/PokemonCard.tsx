@@ -1,9 +1,11 @@
+// Displays a card for a Pokémon with its details and actions
 import React, { useState } from "react";
 import type { Pokemon } from "../data/pokemon";
 import { episodes } from "../data/episodes";
 import TypeBadge from "./TypeBadge";
 import AddAppearanceModal from "./AddAppearanceModal";
 
+// Define the props for the PokemonCard component
 interface PokemonCardProps {
   pokemon: Pokemon;
   onDelete: (id: number) => void;
@@ -12,6 +14,7 @@ interface PokemonCardProps {
   onViewAppearances: (pokemon: Pokemon) => void;
 }
 
+// Displays a card for a Pokémon with its details and actions
 const PokemonCard: React.FC<PokemonCardProps> = ({
   pokemon,
   onDelete,
